@@ -1,0 +1,8 @@
+# cPanel → Git Version Control → "Deploy HEAD Commit" copies the prebuilt site
+# from dist/ into public_html. Change DEPLOYPATH if the site lives in a subfolder
+# or an addon domain's document root.
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/cp -R dist/. $DEPLOYPATH

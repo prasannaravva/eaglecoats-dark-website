@@ -1,0 +1,60 @@
+/* Shared styles for every page: header, mobile menu and mobile-first fixes.
+   Page-specific utility CSS is compiled by Tailwind into assets/css/<page>.css. */
+
+:root { color-scheme: dark; --ec-header-h: 64px; }
+@media (min-width: 1024px) { :root { --ec-header-h: 80px; } }
+
+html { scroll-padding-top: calc(var(--ec-header-h) + 12px); -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; max-width: 100%; }
+body { -webkit-tap-highlight-color: transparent; }
+img, video, svg, canvas { max-width: 100%; }
+img { height: auto; }
+
+/* Long words / codes never force horizontal scroll on small phones */
+h1, h2, h3, h4, p, li, a, span { overflow-wrap: break-word; }
+
+/* iOS zooms into inputs below 16px — prevent it */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Accessible focus + skip link */
+:focus-visible { outline: 2px solid #F59E0B; outline-offset: 2px; }
+.ec-skip { position: absolute; left: 12px; top: -48px; z-index: 100; padding: 10px 14px; border-radius: 8px; background: #F59E0B; color: #000; font-weight: 600; }
+.ec-skip:focus { top: 12px; }
+
+/* Header */
+.ec-spacer { height: var(--ec-header-h); }
+.ec-header.is-scrolled { background-color: rgba(11, 13, 16, 0.96); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7); }
+.ec-nav-link { position: relative; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #A8A29E; transition: color .2s, background-color .2s; }
+.ec-nav-link:hover { color: #fff; background: rgba(255, 255, 255, 0.04); }
+.ec-nav-link[aria-current="page"] { color: #F59E0B; }
+.ec-nav-link[aria-current="page"]::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; border-radius: 2px; background: #F59E0B; }
+
+/* Mobile menu */
+.ec-mobile-menu { position: fixed; inset: var(--ec-header-h) 0 0 0; z-index: 59; overflow-y: auto; overscroll-behavior: contain;
+  background: rgba(11, 13, 16, 0.98); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  padding-bottom: env(safe-area-inset-bottom); animation: ec-fade .2s ease-out; }
+.ec-m-link { display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-family: 'Playfair Display', Georgia, serif; font-size: 24px; color: #E7E5E4; }
+.ec-m-link[aria-current="page"] { color: #F59E0B; }
+body.ec-menu-open { overflow: hidden; }
+body.ec-menu-open .ec-icon-open { display: none; }
+body.ec-menu-open .ec-icon-close { display: block; }
+@keyframes ec-fade { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* Floating WhatsApp / chat pills: respect the iPhone home indicator and stay compact on phones */
+.fixed.bottom-6, .fixed.bottom-5, .fixed.bottom-8, .fixed.bottom-4 { margin-bottom: env(safe-area-inset-bottom); }
+@media (max-width: 639px) {
+  .fixed.bottom-6.right-6, .fixed.bottom-5.right-5, .fixed.bottom-8.right-8, .fixed.bottom-6.right-4 { right: 16px; bottom: 16px; }
+}
+
+/* Very large display headings scale down gracefully on narrow phones (320–430px) */
+@media (max-width: 430px) {
+  h1 { font-size: clamp(2.25rem, 11vw, 3rem) !important; line-height: 1.05 !important; }
+  h2 { font-size: clamp(1.75rem, 8.5vw, 2.4rem) !important; line-height: 1.12 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

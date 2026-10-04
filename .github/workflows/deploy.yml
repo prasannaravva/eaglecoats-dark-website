@@ -1,0 +1,43 @@
+# Optional: auto-deploy to GoDaddy cPanel over FTPS on every push to main.
+# Add these repository secrets (Settings → Secrets and variables → Actions):
+#   FTP_SERVER    e.g. ftp.yourdomain.com
+#   FTP_USERNAME  cPanel FTP account
+#   FTP_PASSWORD  its password
+# Until FTP_SERVER is set the deploy step is skipped and the workflow only builds.
+name: Build & deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Upload dist/ to public_html
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./public_html/

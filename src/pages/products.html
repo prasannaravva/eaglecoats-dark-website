@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Catalogue — Eagle Coats | 50 Years of Colour. Protection. Trust.</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Public+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            amber: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+            },
+            stone: {
+              100: '#F5F5F4',
+              200: '#E7E5E4',
+              300: '#D6D3D1',
+              400: '#A8A29E',
+              500: '#78716C',
+              800: '#292524',
+              900: '#1C1917',
+              950: '#0C0A09',
+            },
+            canvas: '#0B0D10',
+            surface: {
+              DEFAULT: '#12151A',
+              card: '#141820',
+              elevated: '#1A1E25',
+              border: '#242B35'
+            }
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Playfair Display", "serif"],
+            display: ["Playfair Display", "serif"],
+            body: ["Manrope", "sans-serif"],
+            label: ["Space Grotesk", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0B0D10;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #242B35;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #F59E0B;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0D10] text-stone-200 font-body antialiased selection:bg-amber-500 selection:text-black min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component implementation) -->
+<!-- @include header active="products" spacer -->
+<!-- Hero / Header Band Section -->
+<section class="relative bg-gradient-to-b from-[#12151A] via-[#0E1116] to-[#0B0D10] border-b border-[#242B35]/70 pt-12 pb-14 px-6 lg:px-12 overflow-hidden">
+<!-- Ambient light glow -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-amber-500/10 blur-[130px] pointer-events-none rounded-full"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="max-w-3xl">
+<!-- Eyebrow -->
+<div class="flex items-center gap-2.5 mb-3">
+<span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+<span class="font-label uppercase tracking-widest text-xs font-semibold text-amber-500">PRODUCT CATALOGUE</span>
+<span class="text-stone-600">•</span>
+<span class="text-stone-400 text-xs font-label tracking-wider">AP &amp; TELANGANA INDUSTRIAL SPECIFICATION</span>
+</div>
+<!-- Headline -->
+<h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-100 leading-tight">
+          The Eagle Coats <span class="italic font-normal text-amber-400 font-serif">range.</span>
+</h1>
+<!-- Subtitle -->
+<p class="mt-4 text-stone-300 text-base sm:text-lg font-normal leading-relaxed max-w-2xl">
+          Filter by category, brand, surface application, or search formulation specs. Engineered for severe tropical heat, coastal humidity, and architectural distinction.
+        </p>
+</div>
+<!-- Master Search Bar with Quick Filter Pills -->
+<div class="mt-8 max-w-4xl">
+<div class="relative flex items-center">
+<div class="absolute left-4 pointer-events-none text-stone-400">
+<span class="material-symbols-outlined text-2xl">search</span>
+</div>
+<input class="w-full bg-[#141820]/90 text-stone-100 placeholder:text-stone-500 border border-[#242B35] focus:border-amber-500 focus:ring-2 focus:ring-amber-500/30 rounded-2xl py-4 pl-13 pr-32 text-sm sm:text-base backdrop-blur shadow-2xl transition-all" placeholder="Search products, technical codes, or formulation attributes (e.g. Epoxy, NC Thinner, Putty)..." type="text"/>
+<div class="absolute right-3 flex items-center gap-2">
+<span class="hidden sm:inline-block text-[11px] font-label text-stone-500 px-2 py-1 bg-stone-900 border border-stone-800 rounded-md">CMD+K</span>
+<button class="bg-amber-500 hover:bg-amber-400 text-stone-950 px-4 py-2 rounded-xl text-xs font-label uppercase font-bold tracking-wider transition-colors shadow-md">
+              Filter
+            </button>
+</div>
+</div>
+<!-- Quick Tag Filter Pills -->
+<div class="flex items-center gap-2 mt-3.5 overflow-x-auto pb-1 text-xs custom-scroll">
+<span class="text-stone-400 text-xs font-label uppercase tracking-wider whitespace-nowrap">Trending Searches:</span>
+<button class="px-3 py-1 rounded-full bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-amber-500/40 text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap">Epoxy Floorings</button>
+<button class="px-3 py-1 rounded-full bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-amber-500/40 text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap">Crack Fillers</button>
+<button class="px-3 py-1 rounded-full bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-amber-500/40 text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap">Terrace Waterproofing</button>
+<button class="px-3 py-1 rounded-full bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-amber-500/40 text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap">Type 2 Tile Adhesive</button>
+<button class="px-3 py-1 rounded-full bg-stone-900 hover:bg-stone-800 border border-stone-800 hover:border-amber-500/40 text-stone-300 hover:text-amber-400 transition-colors whitespace-nowrap">NC Solvents</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Catalogue Layout (Sticky SideNavBar + 3-Column Grid) -->
+<main class="w-full max-w-7xl mx-auto px-6 lg:px-12 py-10 flex-1 flex flex-col lg:flex-row gap-8">
+<!-- LEFT STICKY FILTER SIDEBAR -->
+<button type="button" data-ec-toggle="ec-filters" aria-controls="ec-filters" aria-expanded="false" class="lg:hidden flex w-full h-12 items-center justify-between rounded-xl border border-white/10 bg-[#12151A] px-4 text-sm font-semibold text-stone-100">
+<span class="flex items-center gap-2"><svg class="h-4 w-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters &amp; categories</span>
+<svg class="ec-chevron h-4 w-4 text-stone-400 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<aside id="ec-filters" class="w-full lg:w-72 flex-shrink-0 max-lg:hidden">
+<div class="sticky top-24 bg-stone-950 rounded-2xl border border-stone-800/80 p-5 shadow-xl shadow-black/50 space-y-6 max-h-[calc(100vh-7rem)] overflow-y-auto custom-scroll">
+<!-- Filter Header -->
+<div class="flex items-center justify-between pb-4 border-b border-stone-800/80">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-amber-500 text-xl" style="font-variation-settings: 'FILL' 1;">tune</span>
+<h2 class="font-headline font-semibold text-base text-stone-100 tracking-tight">Catalogue Filters</h2>
+</div>
+<button class="text-xs font-label uppercase tracking-wider text-amber-500 hover:text-amber-400 transition-colors">
+            Reset Filters
+          </button>
+</div>
+<!-- Category Pills Group -->
+<div class="space-y-2.5">
+<label class="font-label uppercase tracking-wider text-xs font-semibold text-stone-400">Categories</label>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-3 py-1.5 rounded-lg bg-amber-500 text-stone-950 font-semibold text-xs transition-colors shadow-sm">All (12)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Paints (4)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Tile Care (3)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Wood Coatings (2)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Const. Chemicals (1)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Adhesives (1)</button>
+<button class="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 border border-stone-800 text-stone-300 text-xs transition-colors">Oxides (1)</button>
+</div>
+</div>
+<!-- Brands Checkboxes -->
+<div class="space-y-3 pt-4 border-t border-stone-900">
+<div class="flex items-center justify-between">
+<label class="font-label uppercase tracking-wider text-xs font-semibold text-stone-400">Brand Lineup</label>
+<span class="text-[10px] text-stone-500 font-label">AP / TS</span>
+</div>
+<div class="space-y-2 text-sm">
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Royal</span>
+<span class="ml-auto text-xs text-stone-600">3</span>
+</label>
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Avatar</span>
+<span class="ml-auto text-xs text-stone-600">2</span>
+</label>
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Crown</span>
+<span class="ml-auto text-xs text-stone-600">2</span>
+</label>
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Shield</span>
+<span class="ml-auto text-xs text-stone-600">2</span>
+</label>
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Bond</span>
+<span class="ml-auto text-xs text-stone-600">2</span>
+</label>
+<label class="flex items-center gap-2.5 text-stone-300 hover:text-stone-100 cursor-pointer">
+<input checked="" class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-stone-950 w-4 h-4" type="checkbox"/>
+<span>Eagle Fix</span>
+<span class="ml-auto text-xs text-stone-600">1</span>
+</label>
+</div>
+</div>
+<!-- Surface Application Filter -->
+<div class="space-y-2.5 pt-4 border-t border-stone-900">
+<label class="font-label uppercase tracking-wider text-xs font-semibold text-stone-400">Surface Application</label>
+<div class="grid grid-cols-2 gap-1.5 text-xs">
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">home</span>
+<span>Interior</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">shield</span>
+<span>Exterior</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">grid_view</span>
+<span>Floor</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">deck</span>
+<span>Terrace</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">carpenter</span>
+<span>Wood</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded border border-stone-800 hover:border-amber-500/30">
+<span class="material-symbols-outlined text-sm text-amber-500">hardware</span>
+<span>Metal</span>
+</button>
+</div>
+</div>
+<!-- Technical Specification Filter -->
+<div class="space-y-2 pt-4 border-t border-stone-900">
+<label class="font-label uppercase tracking-wider text-xs font-semibold text-stone-400">Pack Format</label>
+<div class="flex flex-wrap gap-1.5 text-xs">
+<span class="px-2 py-1 bg-stone-900 rounded text-stone-300 border border-stone-800 cursor-pointer hover:border-amber-500">1L</span>
+<span class="px-2 py-1 bg-stone-900 rounded text-stone-300 border border-stone-800 cursor-pointer hover:border-amber-500">4L</span>
+<span class="px-2 py-1 bg-stone-900 rounded text-stone-300 border border-stone-800 cursor-pointer hover:border-amber-500">20L</span>
+<span class="px-2 py-1 bg-stone-900 rounded text-stone-300 border border-stone-800 cursor-pointer hover:border-amber-500">20kg</span>
+<span class="px-2 py-1 bg-stone-900 rounded text-stone-300 border border-stone-800 cursor-pointer hover:border-amber-500">25kg</span>
+</div>
+</div>
+<!-- Action CTA -->
+<div class="pt-4 border-t border-stone-900 space-y-2">
+<button class="w-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold py-2.5 rounded-xl text-xs font-label uppercase tracking-wider transition-colors shadow-lg shadow-amber-500/10">
+            Apply Filters
+          </button>
+<div class="flex items-center justify-between text-xs text-stone-500 pt-1 font-label">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-stone-400">menu_book</span>
+              Colour Guide
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-stone-400">description</span>
+              Spec Sheets
+            </span>
+</div>
+</div>
+</div>
+</aside>
+<!-- RIGHT MAIN PRODUCT GRID & CONTROLS -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Grid Header: Result Count, Sorting, View Toggle -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-surface-border gap-4">
+<div>
+<h2 class="text-xl font-headline font-bold text-stone-100 flex items-center gap-2">
+            Formulated Products
+            <span class="text-xs font-label font-normal text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Showing 12 products</span>
+</h2>
+<p class="text-xs text-stone-400 mt-0.5">Heavy-duty coatings, adhesives, and primers produced in Krishna District.</p>
+</div>
+<div class="flex items-center gap-3 self-end sm:self-auto">
+<!-- Sort Dropdown -->
+<div class="relative flex items-center">
+<label class="sr-only" for="sort-select">Sort By</label>
+<select class="bg-surface text-stone-200 text-xs font-label rounded-xl border border-surface-border px-3 py-2 pr-8 focus:ring-amber-500 focus:border-amber-500 cursor-pointer" id="sort-select">
+<option>Featured Formulation</option>
+<option>Popularity</option>
+<option>DFT / Film Build</option>
+<option>Price: High to Low</option>
+<option>Price: Low to High</option>
+</select>
+</div>
+<!-- View Mode Toggle -->
+<div class="flex items-center bg-surface border border-surface-border rounded-xl p-1">
+<button aria-label="Grid View" class="p-1.5 rounded-lg bg-amber-500/20 text-amber-400">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+</button>
+<button aria-label="List View" class="p-1.5 rounded-lg text-stone-500 hover:text-stone-300 transition-colors">
+<span class="material-symbols-outlined text-[18px]">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3-Column Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- PRODUCT 1: Eagle Epoxy Primer -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<!-- Packshot / Image container with radial glow -->
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">format_paint</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">INDUSTRIAL SERIES</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Wood Coatings</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Premium
+                </span>
+</div>
+</div>
+<!-- Title & Brand -->
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Shield</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Epoxy Primer – Single Pack
+              </h3>
+</div>
+<!-- Bullet Specs -->
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>DFT: <strong class="text-stone-200">35–45 µm</strong> per coat</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Exceptional wood grain penetration</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Fast curing anti-moisture barrier</span>
+</li>
+</ul>
+<!-- Pack Sizes Chips -->
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">4L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20L</span>
+</div>
+</div>
+<!-- Interactive Card Footer -->
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 2: Royal RX 100 NC Thinner -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">science</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">HIGH DISTILLATION</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Wood Coatings</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Pure Grade
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Royal</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Royal RX 100 NC Thinner
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Grade: <strong class="text-stone-200">Premium High-Purity Solvent</strong></span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Zero bloom blush in coastal humidity</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Smooth mirror-finish levelling action</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">200ml</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">500ml</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">5L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20L</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 3: Texture Putty – ROYAL -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">layers</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">POLYMER ENRICHED</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Paints</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Top Rated
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Royal</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Texture Putty – ROYAL
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Active <strong class="text-stone-200">anti-fungal &amp; anti-algal</strong> protection</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>High elasticity prevents hairline stress fissures</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Pure brilliant white quartz marble base</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">25kg Sack</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 4: Texture Putty – SURYA -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">texture</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">ARCHITECTURAL MASONRY</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Paints</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Heritage
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Crown</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Texture Putty – SURYA
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Exceptional <strong class="text-stone-200">crack bridging</strong> up to 1.8mm</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Smooth feathering for exterior lime surfaces</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Water repellency tested for Andhra monsoons</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">25kg Sack</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 5: Eagle Tile Adhesive B 404 -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">grid_on</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">IS 15477: TYPE 2</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Tile Care</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                  Heavy Duty
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Bond</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Tile Adhesive B 404
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span><strong class="text-stone-200">Polymer modified</strong>, Type 2 heavy duty</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Engineered for large vitrified slabs &amp; granite</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Zero vertical slip on high-rise facades</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20kg Sack</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 6: Eagle Tile Adhesive A 303 -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">handyman</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">CERAMIC &amp; MARBLE</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Tile Care</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Reliable
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Fix</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Tile Adhesive A 303
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>High <strong class="text-stone-200">shear bond strength</strong> (&gt;1.2 N/mm²)</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Self-curing formulation without water ponding</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Extended open pot life of 30+ minutes</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20kg Sack</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- MID-GRID PROMO BANNER (Spanning full width across grid columns) -->
+<div class="col-span-1 md:col-span-2 xl:col-span-3 rounded-2xl overflow-hidden border border-amber-500/30 relative bg-[#12151A] my-3 shadow-2xl">
+<div class="flex flex-col lg:flex-row items-center justify-between">
+<!-- Left Text Content -->
+<div class="p-8 lg:p-10 z-10 max-w-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-amber-500 text-lg" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label uppercase tracking-widest text-xs font-bold text-amber-500">50 YEARS EXPERTISE</span>
+</div>
+<h3 class="font-headline text-2xl sm:text-3xl font-bold text-stone-100 leading-snug">
+                Need help choosing? <span class="italic font-serif text-amber-400 font-normal">Talk to a Colour Expert.</span>
+</h3>
+<p class="mt-3 text-stone-300 text-sm sm:text-base leading-relaxed">
+                Get on-site surface inspection, shade sampling, and contractor estimates anywhere in South India. Our certified technicians help you pick the exact DFT and adhesive strength.
+              </p>
+<!-- Promo CTAs -->
+<div class="mt-6 flex flex-wrap items-center gap-4">
+<a class="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black font-semibold text-xs font-label uppercase tracking-wider transition-all shadow-lg shadow-black/40" href="https://wa.me/919121230042?text=Hi%20Eagle%20Coats%2C%20I%20need%20help%20choosing%20a%20colour.">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span>Chat on WhatsApp</span>
+</a>
+<button class="px-5 py-3 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-stone-100 border border-stone-700 hover:border-amber-500/50 font-semibold text-xs font-label uppercase tracking-wider transition-all">
+                  Book Consultation
+                </button>
+</div>
+</div>
+<!-- Right Image Canvas: South Indian contractor & homeowner reviewing color swatches -->
+<div class="w-full lg:w-1/2 h-64 lg:h-80 relative overflow-hidden">
+<img class="w-full h-full object-cover object-center" data-alt="A warm cinematic photograph of a South Indian couple and contractor in a Vijayawada modern villa reviewing shade swatches. The warm afternoon sun filters through wooden windows casting golden light on rich terracotta wall finishes. The couple is smiling in Indo-western attire, examining vibrant paint palettes in a beautifully finished Indian interior." src="assets/images/a-warm-cinematic-photograph-of-a-south-1280.webp"/>
+<!-- Gradient overlay to blend into card -->
+<div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#12151A] via-[#12151A]/60 to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- PRODUCT 7: Eagle Grout Admix -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">LATEX POLYMER</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Tile Care</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Essential
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Avatar</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Grout Admix
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Active <strong class="text-stone-200">water resistance booster</strong></span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Eliminates joint staining and efflorescence</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Enhances joint flexibility in outdoor patios</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">250ml</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">500ml</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1L</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 8: ZODI Epoxy Tile Grout 2 component -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">shield_with_house</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">100% SOLID EPOXY</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Tile Care</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Industrial
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Crown</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                ZODI Epoxy Tile Grout 2 component
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Coverage: <strong class="text-stone-200">40–45 sq ft/kg</strong> at 3mm joint</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Chemical &amp; acid resistant for commercial kitchens</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>100% stain proof and hygienic finish</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1kg Kit</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">5kg Kit</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 9: Royal Crack Fill -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">healing</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">MICRO-FIBRE SYSTEM</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Paints</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Quick Cure
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Royal</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Royal Crack Fill
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span><strong class="text-stone-200">Micro-fiber reinforced</strong> plaster bridge</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Non-shrink paste; paintable in 4 hours</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Accommodates plaster expansion &amp; contraction</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">500g Tub</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1kg Tub</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 10: Oxar Cement Primer -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">brush</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">HIGH OPACITY BASE</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Paints</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                  Contractor #1
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Avatar</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Oxar Cement Primer
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span><strong class="text-stone-200">High opacity primer</strong> with chalk resistance</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Seals alkaline masonry patches effectively</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Enhances topcoat coverage by over 22%</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">4L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">10L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20L</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 11: Eagle Cool Paste -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">SRI &gt; 105 CERTIFIED</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Paints</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                  Solar Guard
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Shield</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Cool Paste
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Terrace heat reflective: <strong class="text-stone-200">12°C surface drop</strong></span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Glass micro-sphere thermal insulation</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>UV resistant elastomeric coating for Andhra summers</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1kg</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">5kg</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20kg</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+<!-- PRODUCT 12: Eagle Damp Shield Pro -->
+<div class="group relative bg-[#141820] hover:bg-[#181D26] border border-[#242B35] hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10">
+<div>
+<div class="relative w-full h-48 rounded-xl bg-[#0F1217] flex items-center justify-center overflow-hidden mb-4 border border-stone-800/60">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.18)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500/80 group-hover:scale-105 transition-transform" style="font-variation-settings: 'FILL' 1;">umbrella</span>
+<span class="block mt-1 font-label text-[10px] uppercase tracking-widest text-stone-400">HYDROSTATIC SEAL</span>
+</div>
+<div class="absolute top-3 left-3">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] font-label font-bold uppercase tracking-wider bg-stone-900/90 text-stone-300 border border-stone-700">Construction Chemicals</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-label uppercase font-bold tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                  10 Yr Shield
+                </span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="text-xs font-label uppercase tracking-widest text-amber-500 font-semibold">Eagle Bond</span>
+<h3 class="font-headline text-lg font-bold text-stone-100 group-hover:text-amber-400 transition-colors">
+                Eagle Damp Shield Pro
+              </h3>
+</div>
+<ul class="mt-3.5 space-y-1.5 text-xs text-stone-400 font-body">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span><strong class="text-stone-200">Multi-surface waterproofing</strong> membrane</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Withstands up to 7 bars of negative water pressure</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500/70"></span>
+<span>Ideal for sunken slabs, parapets &amp; basements</span>
+</li>
+</ul>
+<div class="mt-4 pt-3 border-t border-stone-800/70 flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-label uppercase text-stone-500 mr-1">Available:</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">1L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">4L</span>
+<span class="px-2 py-0.5 rounded bg-stone-900 border border-stone-800 text-[11px] font-label text-stone-300">20L</span>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-stone-800 flex items-center justify-between">
+<a class="text-xs font-label uppercase tracking-wider font-semibold text-amber-500 group-hover:text-amber-400 flex items-center gap-1" href="#">
+              View product <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<label class="flex items-center gap-1.5 text-[11px] font-label text-stone-400 hover:text-stone-200 cursor-pointer">
+<input class="rounded border-stone-700 bg-stone-900 text-amber-500 focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Pagination / Results Footer -->
+<div class="mt-12 pt-6 border-t border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4">
+<span class="text-xs font-label text-stone-400">
+          Showing <span class="text-stone-200 font-semibold">12</span> of <span class="text-stone-200 font-semibold">48</span> formulations in South India catalogue
+        </span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-surface-border text-xs font-label text-stone-400 hover:text-stone-200 disabled:opacity-50" disabled="">
+            Previous
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-amber-500 text-stone-950 font-bold text-xs font-label">1</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-surface-border text-xs font-label text-stone-300 hover:bg-stone-800">2</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-surface-border text-xs font-label text-stone-300 hover:bg-stone-800">3</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface border border-surface-border text-xs font-label text-stone-400 hover:text-stone-200">
+            Next
+          </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating WhatsApp 'Chat with Colour Expert' Pill -->
+<div class="fixed bottom-6 right-6 z-40">
+<a class="flex items-center gap-3 bg-[#12151A] hover:bg-[#1A1E25] text-stone-100 border border-amber-500/40 hover:border-amber-400 rounded-full py-2.5 px-4 shadow-2xl shadow-black/90 transition-all duration-200 hover:scale-105 group backdrop-blur-md" href="https://wa.me/919121230042?text=Hi%20Eagle%20Coats%2C%20I%20need%20help%20choosing%20a%20colour.">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<div class="w-8 h-8 rounded-full bg-[#25D366] text-black flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<div class="text-left pr-1">
+<span class="block text-xs font-label uppercase tracking-wider font-bold text-stone-100 group-hover:text-amber-400 transition-colors">Chat with Colour Expert</span>
+<span class="block text-[10px] text-stone-400">Available now • Telugu, English &amp; Tamil</span>
+</div>
+</a>
+</div>
+<!-- Rich Footer (Shared Component implementation) -->
+<footer class="bg-stone-950 dark:bg-stone-950 docked full-width bottom border-t border-stone-800/80 dark:border-stone-800/80 shadow-2xl shadow-black mt-20">
+<div class="w-full pt-16 pb-12 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col gap-12">
+<!-- Top Grid: Brand summary and Navigation Pillars -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<!-- Brand column -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg overflow-hidden border border-amber-500/30 flex items-center justify-center bg-stone-900">
+<img alt="Eagle Coats Emblem" class="w-7 h-7 object-contain" src="assets/images/eagle-coats-logo.png"/>
+</div>
+<span class="font-headline text-2xl font-bold tracking-tight text-stone-100 dark:text-stone-100">Eagle Coats</span>
+</div>
+<p class="text-stone-400 text-sm leading-relaxed max-w-sm">
+            50 Years of Colour. Protection. Trust. Formulating high-performance decorative emulsions, waterproofing membranes, and NC wood solutions in Vijayawada for Southern India’s architecture.
+          </p>
+<div class="pt-2 flex items-center gap-4 text-xs font-label text-stone-500">
+
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-amber-500 text-sm">factory</span> Made in AP
+            </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-amber-500 text-sm">award_star</span> Est. 1974
+            </span>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div class="space-y-3">
+<h4 class="font-label uppercase tracking-widest text-xs text-amber-500 font-semibold">Specifications</h4>
+<ul class="space-y-2 text-sm text-stone-400">
+<li><a class="hover:text-amber-400 transition-colors" href="products.html">Architectural Specifications</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Safety Data Sheets (MSDS)</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">DFT Application Manual</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Anti-Fungal Certifications</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div class="space-y-3">
+<h4 class="font-label uppercase tracking-widest text-xs text-amber-500 font-semibold">Dealer Network</h4>
+<ul class="space-y-2 text-sm text-stone-400">
+<li><a class="hover:text-amber-400 transition-colors" href="dealers.html">Dealer Network AP &amp; TS</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="dealers.html">Become an Authorized Dealer</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Vijayawada Experience Depot</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Hyderabad Central Warehouse</a></li>
+</ul>
+</div>
+<!-- Links Column 3 -->
+<div class="space-y-3">
+<h4 class="font-label uppercase tracking-widest text-xs text-amber-500 font-semibold">Heritage &amp; Trust</h4>
+<ul class="space-y-2 text-sm text-stone-400">
+<li><a class="hover:text-amber-400 transition-colors" href="about.html">Heritage Projects</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Colour Consultation</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Corporate Governance</a></li>
+<li><a class="hover:text-amber-400 transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar: Exact Copyright & Certification Details -->
+<div class="pt-8 border-t border-stone-800/80 flex flex-col md:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+<div>
+          © 1974–2024 Eagle Coats Private Limited. Vijayawada, Andhra Pradesh. 50 Years of Colour. Protection. Trust.
+        </div>
+<div class="flex items-center gap-6 font-label uppercase tracking-wider text-[11px]">
+<a class="hover:text-amber-400 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-amber-400 transition-colors" href="#">Terms of Formulation</a>
+<a class="hover:text-amber-400 transition-colors" href="#">AP &amp; TS Toll-Free: 1800-EAGLE-COAT</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

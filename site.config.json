@@ -1,0 +1,14 @@
+{
+  "name": "Eagle Coats",
+  "siteUrl": "",
+  "description": "Eagle Coats — paints, waterproofing, tile care, wood coatings, adhesives and oxides from Vijayawada since 1974. 50 Years of Colour. Protection. Trust.",
+  "image": "assets/images/south-indian-couple-in-their-warm-terracotta-1280.webp",
+  "pages": {
+    "index": { "title": "Eagle Coats — 50 Years of Colour. Protection. Trust." },
+    "products": { "title": "Products — Paints, Waterproofing, Tile Care & Wood Coatings | Eagle Coats", "description": "Browse the Eagle Coats range: paints, texture putty, primers, construction chemicals, tile adhesives, epoxy grout and wood coatings with full specs and pack sizes." },
+    "visualiser": { "title": "Colour Studio — Try Paint Colours on Your Walls | Eagle Coats", "description": "Preview Eagle Coats shades on the main wall, accent wall and ceiling, compare before and after, and save a colour palette for your home." },
+    "about": { "title": "About Us — Since 1974 | Eagle Coats", "description": "For over five decades, Eagle Coats has brought colour and surface protection to homes across South India, from Vijayawada, Andhra Pradesh." },
+    "dealers": { "title": "Find an Eagle Coats Dealer Near You", "description": "Find authorised Eagle Coats dealers across Andhra Pradesh, Telangana, Karnataka, Tamil Nadu and Kerala. Call, WhatsApp or request a direct quote." },
+    "404": { "title": "Page not found | Eagle Coats" }
+  }
+}

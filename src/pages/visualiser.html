@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Colour Studio — Interactive Paint Visualiser | Eagle Coats</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            noir: {
+              950: '#07090B',
+              900: '#0B0D10',
+              850: '#101317',
+              800: '#14181E',
+              700: '#1E232B',
+              600: '#2A303C',
+              500: '#3D4554'
+            },
+            amber: {
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309'
+            },
+            sand: '#F7F4EE'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Manrope"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0D10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2A303C;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F59E0B;
+    }
+
+    /* Range slider styling */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 38px;
+      width: 38px;
+      border-radius: 50%;
+      background: #F59E0B;
+      cursor: ew-resize;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.6), inset 0 0 4px #FFFFFF;
+      border: 3px solid #0B0D10;
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 38px;
+      width: 38px;
+      border-radius: 50%;
+      background: #F59E0B;
+      cursor: ew-resize;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.6), inset 0 0 4px #FFFFFF;
+      border: 3px solid #0B0D10;
+    }
+
+    /* Wall tint blend modes */
+    .wall-tint-layer {
+      mix-blend-mode: multiply;
+      transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    }
+    .accent-tint-layer {
+      mix-blend-mode: color-burn;
+      transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    }
+    .ceiling-tint-layer {
+      mix-blend-mode: soft-light;
+      transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    }
+  </style>
+</head>
+<body class="bg-noir-900 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-noir-900 min-h-screen relative overflow-x-hidden">
+
+  <!-- NAVIGATION -->
+  <!-- @include header active="visualiser" spacer -->
+
+  <!-- MAIN STUDIO WORKSPACE -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    
+    <!-- Title & Subheader Area -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div>
+        <div class="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-widest mb-1.5">
+          <i class="ph ph-sparkle-fill"></i>
+          <span>Next-Gen Visualiser Studio</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight">
+          Colour Studio <span class="text-amber-400 italic font-serif font-medium">Interactive</span>
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base mt-1.5 max-w-2xl font-light">
+          Experience Eagle Coats' signature South Indian luxury shades live in authentic architectural spaces. Adjust walls, test accents, and craft harmonious palettes.
+        </p>
+      </div>
+
+      <!-- Quick Room Switcher Tabs -->
+      <div class="flex items-center bg-noir-800/90 border border-white/10 p-1 rounded-xl overflow-x-auto max-w-full">
+        <button class="room-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-noir-950 shadow transition-all whitespace-nowrap" data-room="living">
+          <i class="ph ph-armchair mr-1"></i> Living Room
+        </button>
+        <button class="room-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap" data-room="bedroom">
+          <i class="ph ph-bed mr-1"></i> Master Bedroom
+        </button>
+        <button class="room-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap" data-room="pooja">
+          <i class="ph ph-flame mr-1"></i> Pooja Sanctum
+        </button>
+        <button class="room-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap" data-room="exterior">
+          <i class="ph ph-house-line mr-1"></i> Exterior Facade
+        </button>
+        <button class="room-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap" data-room="kitchen">
+          <i class="ph ph-cooking-pot mr-1"></i> Modular Kitchen
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN STUDIO INTERFACE -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- LEFT / MAIN: INTERACTIVE VISUALIZER CANVAS (8 COLS) -->
+      <div class="lg:col-span-8 flex flex-col space-y-4">
+        
+        <!-- Canvas Frame Container -->
+        <div class="relative w-full aspect-[16/10] sm:aspect-[16/9.5] rounded-2xl overflow-hidden bg-noir-950 border border-white/15 shadow-2xl group select-none" id="visualizer-container">
+          
+          <!-- BASE / BEFORE IMAGE (Original Unpainted / Neutral State) -->
+          <div class="absolute inset-0 w-full h-full overflow-hidden">
+            <img src="assets/images/original-architectural-living-room-1280.webp" alt="Original Architectural Living Room" class="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.02]">
+            
+            <!-- Before subtle label on top-left of before side -->
+            <div class="absolute bottom-5 left-5 px-3 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono tracking-wider text-slate-300">
+              ORIGINAL ARCHITECTURE
+            </div>
+          </div>
+
+          <!-- AFTER IMAGE + COLOR OVERLAYS (Clipped by Slider) -->
+          <div id="after-layer-wrapper" class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none" style="clip-path: polygon(0 0, 52% 0, 52% 100%, 0 100%);">
+            
+            <!-- Tinted Image Base -->
+            <img src="assets/images/original-architectural-living-room-1280.webp" alt="Painted Living Room" class="w-full h-full object-cover object-center filter brightness-[0.96] contrast-[1.04]">
+            
+            <!-- MAIN WALL TINT MASK (Deep Teal overlay simulating living room focal wall) -->
+            <div id="main-wall-tint" class="absolute inset-0 w-full h-full wall-tint-layer opacity-80" 
+                 style="background: linear-gradient(135deg, rgba(13, 79, 92, 0.85) 0%, rgba(13, 79, 92, 0.70) 50%, rgba(9, 49, 58, 0.88) 100%); clip-path: polygon(0% 0%, 55% 0%, 55% 78%, 20% 78%, 0% 70%);">
+            </div>
+
+            <!-- ACCENT WALL TINT MASK (Temple Ochre on the column & niche wall) -->
+            <div id="accent-wall-tint" class="absolute inset-0 w-full h-full accent-tint-layer opacity-75"
+                 style="background: linear-gradient(180deg, rgba(206, 126, 23, 0.82) 0%, rgba(180, 83, 9, 0.88) 100%); clip-path: polygon(55% 0%, 75% 0%, 75% 82%, 55% 78%);">
+            </div>
+
+            <!-- CEILING TINT MASK (Soft Jasmine Ivory tone over ceiling wooden rafters) -->
+            <div id="ceiling-tint" class="absolute inset-0 w-full h-full ceiling-tint-layer opacity-60"
+                 style="background: radial-gradient(circle at 50% 10%, rgba(254, 250, 238, 0.75) 0%, rgba(247, 244, 238, 0.3) 80%); clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 0% 25%);">
+            </div>
+
+            <!-- "Your Colours" indicator badge inside after view -->
+            <div class="absolute bottom-5 right-5 px-3 py-1 rounded-md bg-amber-500/90 backdrop-blur-md border border-amber-300 text-[11px] font-bold tracking-wider text-noir-950 flex items-center gap-1.5 shadow-lg shadow-black/50">
+              <i class="ph ph-paint-brush-broad-fill"></i>
+              <span>YOUR COLOURS ACTIVE</span>
+            </div>
+          </div>
+
+          <!-- TOP CHIP (OVERLAY) -->
+          <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-noir-950/80 backdrop-blur-md border border-white/15 text-xs text-white shadow-xl">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="font-medium text-slate-200">The Modern Living Room</span>
+              <span class="text-white/20">•</span>
+              <span class="text-amber-400 font-semibold text-[11px]">Interactive Room</span>
+            </div>
+          </div>
+
+          <!-- TOP-RIGHT CONTROL TOOLBAR -->
+          <div class="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-noir-950/80 backdrop-blur-md border border-white/15 p-1 rounded-xl shadow-xl">
+            <!-- Toggle Before/After -->
+            <button id="toggle-split-btn" title="Toggle Split View" class="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg text-sm transition-colors flex items-center gap-1 text-xs font-medium">
+              <i class="ph ph-arrows-split text-amber-400 text-base"></i>
+              <span class="hidden sm:inline">Split</span>
+            </button>
+            <div class="w-px h-4 bg-white/10"></div>
+            <!-- Zoom Toggle -->
+            <button id="zoom-btn" title="Zoom In" class="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg text-sm transition-colors">
+              <i class="ph ph-magnifying-glass-plus text-base"></i>
+            </button>
+            <!-- Fullscreen -->
+            <button id="fullscreen-btn" title="Fullscreen" class="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg text-sm transition-colors">
+              <i class="ph ph-corners-out text-base"></i>
+            </button>
+            <!-- Reset Paints -->
+            <button id="reset-paints-btn" title="Reset Default Scheme" class="p-2 text-slate-300 hover:text-amber-400 hover:bg-white/10 rounded-lg text-sm transition-colors">
+              <i class="ph ph-arrow-counter-clockwise text-base"></i>
+            </button>
+          </div>
+
+          <!-- DRAGGABLE SLIDER DIVIDER -->
+          <div id="slider-handle" class="absolute top-0 bottom-0 z-30 pointer-events-none flex flex-col items-center justify-center" style="left: 52%;">
+            <!-- Vertical Line -->
+            <div class="w-0.5 h-full bg-gradient-to-b from-amber-400/90 via-amber-400 to-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.8)]"></div>
+            
+            <!-- Circular Knob / Pill -->
+            <div class="absolute top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-noir-950 flex items-center justify-center shadow-2xl shadow-amber-500/60 border-2 border-noir-900 cursor-ew-resize pointer-events-auto hover:scale-110 active:scale-95 transition-transform">
+              <i class="ph ph-arrows-left-right text-lg font-bold"></i>
+            </div>
+
+            <!-- Top Label Badge on Divider -->
+            <div class="absolute top-3 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-full bg-noir-950/90 backdrop-blur-md border border-amber-500/40 text-[10px] font-bold text-amber-300 tracking-wider shadow-lg flex items-center gap-1.5">
+              <span>Original</span>
+              <span class="text-white/30">|</span>
+              <span class="text-white font-extrabold">Your Colours</span>
+            </div>
+          </div>
+
+          <!-- INVISIBLE RANGE INPUT OVERLAY FOR ACCESSIBLE / EASY TOUCH DRAG -->
+          <input type="range" min="0" max="100" value="52" id="slider-input" aria-label="Before and After visualizer split" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+
+          <!-- PINNED HOTSPOTS (Clickable Surface Selectors on Canvas) -->
+          <div class="absolute top-[38%] left-[26%] z-20">
+            <button class="surface-pin group flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-noir-950/80 hover:bg-noir-950 backdrop-blur-md border border-amber-500/60 text-white text-xs shadow-xl transition-transform hover:scale-105" data-surface="main">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#0D4F5C] border border-white"></span>
+              <span class="font-medium text-[11px]">Main Wall: Backwater Teal</span>
+              <i class="ph ph-cursor-click text-amber-400 text-xs"></i>
+            </button>
+          </div>
+
+          <div class="absolute top-[52%] left-[64%] z-20">
+            <button class="surface-pin group flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-noir-950/80 hover:bg-noir-950 backdrop-blur-md border border-amber-500/60 text-white text-xs shadow-xl transition-transform hover:scale-105" data-surface="accent">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#CE7E17] border border-white"></span>
+              <span class="font-medium text-[11px]">Accent: Temple Ochre</span>
+              <i class="ph ph-cursor-click text-amber-400 text-xs"></i>
+            </button>
+          </div>
+
+          <div class="absolute top-[12%] left-[45%] z-20">
+            <button class="surface-pin group flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-noir-950/80 hover:bg-noir-950 backdrop-blur-md border border-white/20 hover:border-amber-500 text-white text-xs shadow-xl transition-transform hover:scale-105" data-surface="ceiling">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#FEFAEE] border border-slate-300"></span>
+              <span class="font-medium text-[11px]">Ceiling: Jasmine White</span>
+              <i class="ph ph-cursor-click text-amber-400 text-xs"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- BELOW CANVAS ROW: Upload Photo Card & Color Disclaimer -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          
+          <!-- Upload Photo Card -->
+          <div class="md:col-span-7 bg-noir-850/60 border-2 border-dashed border-white/15 hover:border-amber-500/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 transition-all duration-300 group cursor-pointer hover:bg-noir-800/60">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                <i class="ph ph-camera-plus"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white group-hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                  <span>Try it in your own space</span>
+                  <span class="px-1.5 py-0.5 rounded text-[9px] bg-amber-500 text-noir-950 font-extrabold uppercase">AI Tool</span>
+                </h3>
+                <p class="text-xs text-slate-400 mt-0.5">Upload a photo of your living room, bedroom or exterior.</p>
+              </div>
+            </div>
+            <button class="px-3.5 py-2 rounded-lg bg-noir-800 group-hover:bg-amber-500 text-slate-200 group-hover:text-noir-950 border border-white/10 group-hover:border-amber-500 text-xs font-bold transition-all whitespace-nowrap shadow">
+              + Upload photo
+            </button>
+          </div>
+
+          <!-- Color Accuracy Disclaimer -->
+          <div class="md:col-span-5 bg-noir-850/40 border border-white/10 rounded-2xl p-4 flex items-center gap-3 text-xs text-slate-400 leading-relaxed">
+            <i class="ph ph-info text-amber-400 text-xl flex-shrink-0"></i>
+            <p>
+              <strong class="text-slate-200 font-semibold">Indicative visual:</strong> On-screen colours are rendered digitally. Lighting, screen calibration, and sheen vary. Always test with physical Eagle Coats shade sample swatches before painting.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL: INTERACTIVE PALETTE & SWATCH CONTROLS (4 COLS) -->
+      <div class="lg:col-span-4 flex flex-col space-y-5">
+        
+        <!-- SURFACE SELECTOR & SHADES CARD -->
+        <div class="bg-noir-850/90 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl relative overflow-hidden">
+          
+          <!-- Subtle background glow -->
+          <div class="absolute -right-20 -top-20 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Header -->
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Step 1 &bull; Target</span>
+              <h2 class="text-lg font-bold text-white">Select a surface</h2>
+            </div>
+            <span class="text-xs text-slate-400 bg-noir-800 px-2 py-1 rounded-md border border-white/5" id="active-surface-badge">
+              Active: <span class="text-amber-400 font-semibold">Main wall</span>
+            </span>
+          </div>
+
+          <!-- Segmented Control: Main Wall / Accent Wall / Ceiling -->
+          <div class="grid grid-cols-3 gap-1 bg-noir-950 p-1 rounded-xl border border-white/10 mb-5">
+            <button class="surface-tab-btn active py-2 px-1 text-center rounded-lg text-xs font-bold transition-all bg-amber-500 text-noir-950 shadow-md" data-target="main">
+              Main wall
+            </button>
+            <button class="surface-tab-btn py-2 px-1 text-center rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all" data-target="accent">
+              Accent wall
+            </button>
+            <button class="surface-tab-btn py-2 px-1 text-center rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all" data-target="ceiling">
+              Ceiling
+            </button>
+          </div>
+
+          <!-- Shade Families Filter Tabs -->
+          <div class="mb-3">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-300">Shade Collections</span>
+              <span class="text-[11px] text-slate-400">South Heritage Series</span>
+            </div>
+            <div class="flex items-center space-x-1.5 overflow-x-auto pb-1.5 scrollbar-thin">
+              <button class="family-tab active px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/10 text-amber-400 border border-amber-500/30 whitespace-nowrap" data-family="heritage">
+                Heritage South
+              </button>
+              <button class="family-tab px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white hover:bg-white/5 whitespace-nowrap" data-family="warm">
+                Warm &amp; welcoming
+              </button>
+              <button class="family-tab px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white hover:bg-white/5 whitespace-nowrap" data-family="calm">
+                Calm &amp; considered
+              </button>
+              <button class="family-tab px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white hover:bg-white/5 whitespace-nowrap" data-family="bold">
+                Bold &amp; beautiful
+              </button>
+              <button class="family-tab px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white hover:bg-white/5 whitespace-nowrap" data-family="neutrals">
+                Neutrals
+              </button>
+            </div>
+          </div>
+
+          <!-- Grid of Circular Colour Swatches -->
+          <div class="space-y-2 mb-5">
+            <div class="grid grid-cols-4 gap-2.5" id="swatches-grid">
+              
+              <!-- 1: Backwater Teal (Default Main) -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#0D4F5C" data-name="Backwater Teal" data-code="EC-842" data-sheen="Eggshell Satin">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-2 ring-amber-400 ring-offset-2 ring-offset-noir-900 group-hover:scale-105 transition-transform" style="background-color: #0D4F5C;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Backwater Teal</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-842</span>
+              </button>
+
+              <!-- 2: Temple Ochre (Default Accent) -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#CE7E17" data-name="Temple Ochre" data-code="EC-319" data-sheen="Velvet Matte">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #CE7E17;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Temple Ochre</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-319</span>
+              </button>
+
+              <!-- 3: Turmeric Gold -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#E5A624" data-name="Turmeric Gold" data-code="EC-204" data-sheen="Warm Lustre">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #E5A624;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Turmeric Gold</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-204</span>
+              </button>
+
+              <!-- 4: Kanjeevaram Red -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#8E1F2F" data-name="Kanjeevaram Red" data-code="EC-512" data-sheen="Silk Matt">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #8E1F2F;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Kanjeevaram Red</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-512</span>
+              </button>
+
+              <!-- 5: Jasmine White (Default Ceiling) -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#FEFAEE" data-name="Jasmine White" data-code="EC-101" data-sheen="Flat Low-Sheen">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/20 group-hover:scale-105 transition-transform border border-slate-300" style="background-color: #FEFAEE;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Jasmine White</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-101</span>
+              </button>
+
+              <!-- 6: Monsoon Grey -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#475569" data-name="Monsoon Grey" data-code="EC-709" data-sheen="Architectural Sheen">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #475569;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Monsoon Grey</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-709</span>
+              </button>
+
+              <!-- 7: Mango Leaf -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#2D5A27" data-name="Mango Leaf" data-code="EC-440" data-sheen="Rich Velvet">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #2D5A27;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Mango Leaf</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-440</span>
+              </button>
+
+              <!-- 8: Coconut Husk -->
+              <button class="swatch-item group flex flex-col items-center p-1.5 rounded-xl bg-noir-800/50 hover:bg-noir-700/60 border border-white/5 hover:border-amber-400 transition-all text-center relative"
+                      data-hex="#6E473B" data-name="Coconut Husk" data-code="EC-633" data-sheen="Earthy Matt">
+                <span class="w-9 h-9 rounded-full shadow-inner ring-1 ring-white/10 group-hover:scale-105 transition-transform" style="background-color: #6E473B;"></span>
+                <span class="text-[10px] font-medium text-slate-200 mt-1.5 line-clamp-1 leading-tight">Coconut Husk</span>
+                <span class="text-[8px] font-mono text-slate-400">EC-633</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Finishes / Sheen Indicator -->
+          <div class="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-white/10">
+            <span class="flex items-center gap-1.5">
+              <i class="ph ph-sparkle text-amber-400"></i> Finish: <strong class="text-white font-medium" id="sheen-label">Noir Velvet Luxury Emulsion</strong>
+            </span>
+            <span class="text-[10px] text-amber-400/90 font-mono">100% Washable</span>
+          </div>
+
+        </div>
+
+        <!-- "YOUR PALETTE" CARD (3 Chosen Swatches + Hex Codes + Actions) -->
+        <div class="bg-noir-850/90 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl relative">
+          
+          <div class="flex items-center justify-between mb-3.5">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">Custom Harmonized</span>
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider">Your Palette</h3>
+            </div>
+            <button class="text-xs text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1" id="copy-palette-btn">
+              <i class="ph ph-copy"></i> Copy Hexes
+            </button>
+          </div>
+
+          <!-- 3 Chosen Swatches Row -->
+          <div class="space-y-2.5 mb-5">
+            
+            <!-- Main Wall Chosen -->
+            <div class="flex items-center justify-between p-2 rounded-xl bg-noir-900 border border-white/5 hover:border-amber-500/30 transition-colors">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg shadow-inner ring-1 ring-white/10" id="palette-swatch-main" style="background-color: #0D4F5C;"></div>
+                <div>
+                  <div class="text-xs font-bold text-white" id="palette-name-main">Backwater Teal</div>
+                  <div class="text-[10px] text-slate-400">Main Wall &bull; EC-842</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-mono font-semibold text-amber-400" id="palette-hex-main">#0D4F5C</span>
+              </div>
+            </div>
+
+            <!-- Accent Wall Chosen -->
+            <div class="flex items-center justify-between p-2 rounded-xl bg-noir-900 border border-white/5 hover:border-amber-500/30 transition-colors">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg shadow-inner ring-1 ring-white/10" id="palette-swatch-accent" style="background-color: #CE7E17;"></div>
+                <div>
+                  <div class="text-xs font-bold text-white" id="palette-name-accent">Temple Ochre</div>
+                  <div class="text-[10px] text-slate-400">Accent Wall &bull; EC-319</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-mono font-semibold text-amber-400" id="palette-hex-accent">#CE7E17</span>
+              </div>
+            </div>
+
+            <!-- Ceiling Chosen -->
+            <div class="flex items-center justify-between p-2 rounded-xl bg-noir-900 border border-white/5 hover:border-amber-500/30 transition-colors">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg shadow-inner ring-1 ring-white/10 border border-slate-300" id="palette-swatch-ceiling" style="background-color: #FEFAEE;"></div>
+                <div>
+                  <div class="text-xs font-bold text-white" id="palette-name-ceiling">Jasmine White</div>
+                  <div class="text-[10px] text-slate-400">Ceiling &bull; EC-101</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-mono font-semibold text-amber-400" id="palette-hex-ceiling">#FEFAEE</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Buttons: Save Palette (Amber) and Share (Ghost) -->
+          <div class="grid grid-cols-2 gap-3">
+            <button id="save-palette-btn" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-noir-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/25 transition-all">
+              <i class="ph ph-floppy-disk text-base"></i>
+              <span>Save Palette</span>
+            </button>
+            <button id="share-palette-btn" class="w-full py-2.5 px-4 rounded-xl bg-transparent hover:bg-white/5 border border-white/15 hover:border-white/30 text-white font-semibold text-xs tracking-wide flex items-center justify-center gap-1.5 transition-all">
+              <i class="ph ph-share-network text-base text-amber-400"></i>
+              <span>Share</span>
+            </button>
+          </div>
+
+          <!-- Quick Quote Link -->
+          <div class="mt-3 text-center">
+            <a href="#quote" class="text-[11px] text-slate-400 hover:text-amber-400 transition-colors inline-flex items-center gap-1">
+              <span>Calculate required paint litres for this combination</span> &rarr;
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 3-STEP VISUALIZER PROCESS STRIP -->
+    <section class="mt-14 pt-10 border-t border-white/10">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-xs uppercase tracking-[0.2em] font-bold text-amber-400">Intuitive Workflow</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Design Your Perfect Ambiance in 3 Steps</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="relative bg-noir-850/60 border border-white/10 rounded-2xl p-6 hover:border-amber-500/40 transition-all group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-4xl font-serif font-bold text-white/15 group-hover:text-amber-400/40 transition-colors">01</span>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+              <i class="ph ph-bounding-box"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">Choose your surface</h3>
+          <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+            Select the focal main wall, architectural niche accent, or wooden ceiling elements to define where light and shadows fall.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-noir-850/60 border border-white/10 rounded-2xl p-6 hover:border-amber-500/40 transition-all group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-4xl font-serif font-bold text-white/15 group-hover:text-amber-400/40 transition-colors">02</span>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+              <i class="ph ph-swatches"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">Explore your colours</h3>
+          <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+            Browse authentic regional pigments curated for South Indian light—from Backwater Teal to Kanjeevaram Red and Temple Ochre.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-noir-850/60 border border-white/10 rounded-2xl p-6 hover:border-amber-500/40 transition-all group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-4xl font-serif font-bold text-white/15 group-hover:text-amber-400/40 transition-colors">03</span>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+              <i class="ph ph-heart-straight"></i>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">Save your favourite palette</h3>
+          <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+            Lock in your custom trio, export exact hex &amp; product codes, and carry them directly to your local certified dealer.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION CARD WITH LIFESTYLE IMAGE -->
+    <section class="mt-12 bg-gradient-to-r from-noir-850 via-noir-800 to-noir-850 border border-white/15 rounded-3xl overflow-hidden shadow-2xl relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
+        
+        <!-- Left Text & Actions (7 Cols) -->
+        <div class="p-8 sm:p-12 lg:col-span-7 flex flex-col justify-center space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold w-max">
+            <i class="ph ph-map-pin-line"></i>
+            <span>Chennai &bull; Bengaluru &bull; Hyderabad &bull; Kochi &bull; Vijayawada</span>
+          </div>
+
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white leading-tight">
+              Love your palette? <br>
+              <span class="text-amber-400 italic">Find the nearest dealer.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base mt-3 max-w-lg leading-relaxed">
+              Step into any of our our authorized showrooms across Andhra Pradesh, Telangana, Tamil Nadu, Karnataka &amp; Kerala. Touch real wooden sample panels, view high-sheen cards, and consult master applicators.
+            </p>
+          </div>
+
+          <!-- Dealer Search Input & CTA -->
+          <div class="flex flex-col sm:flex-row gap-3 max-w-md">
+            <div class="relative flex-grow">
+              <i class="ph ph-map-pin absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+              <input type="text" placeholder="Enter Pincode or City (e.g. 600028)" class="w-full pl-10 pr-4 py-3 rounded-xl bg-noir-950 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+            <button class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-noir-950 font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 transition-all whitespace-nowrap">
+              <span>Locate</span>
+              <i class="ph ph-arrow-right font-bold"></i>
+            </button>
+          </div>
+
+          <!-- Stats row -->
+          <div class="pt-4 border-t border-white/10 flex items-center gap-8 text-xs text-slate-400">
+            <div>
+              <span class="block text-lg font-bold text-white">9</span>
+              <span>States Served</span>
+            </div>
+            <div>
+              <span class="block text-lg font-bold text-white">50 Yrs</span>
+              <span>South Indian Heritage</span>
+            </div>
+            <div>
+              <span class="block text-lg font-bold text-amber-400">10-Year</span>
+              <span>Waterproof Warranty</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Lifestyle Image (5 Cols) -->
+        <div class="lg:col-span-5 h-72 sm:h-96 lg:h-full min-h-[360px] relative overflow-hidden">
+          <img src="assets/images/happy-south-indian-couple-with-shade-card-1280.webp" alt="Happy South Indian couple with shade card in Chennai living room" class="w-full h-full object-cover object-center filter brightness-95 contrast-105">
+          <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-noir-850 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-slate-300">
+            Homeowner &bull; Adyar, Chennai
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-20 bg-noir-950 border-t border-white/10 py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <span class="font-serif font-bold text-lg text-white">EAGLE</span>
+          <span class="font-sans font-light text-base text-amber-400 tracking-wider">COATS</span>
+        </div>
+        <p class="text-slate-400 leading-relaxed">
+          Crafting architectural coatings, weather-resistant exterior finishes, and luxury interior emulsions tailored for the tropical climate of Southern India since 1974.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Colour &amp; Tools</h4>
+        <ul class="space-y-2">
+          <li><a href="visualiser.html" class="hover:text-amber-400 transition-colors">Colour Studio Visualiser</a></li>
+          <li><a href="visualiser.html" class="hover:text-amber-400 transition-colors">South Heritage Shade Card</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition-colors">Paint Litre Calculator</a></li>
+          <li><a href="products.html" class="hover:text-amber-400 transition-colors">Monsoon Waterproofing Guide</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Key Products</h4>
+        <ul class="space-y-2">
+          <li><a href="products.html" class="hover:text-amber-400 transition-colors">Eagle Noir Velvet Emulsion</a></li>
+          <li><a href="products.html" class="hover:text-amber-400 transition-colors">Kerala RainShield Exterior</a></li>
+          <li><a href="products.html" class="hover:text-amber-400 transition-colors">Teak &amp; Rosewood Polish</a></li>
+          <li><a href="products.html" class="hover:text-amber-400 transition-colors">DampBlock Primer 3X</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 text-xs uppercase tracking-wider">Corporate &amp; Contact</h4>
+        <p class="leading-relaxed mb-2">
+          Head Office: MG Road, Labbipet, Vijayawada, Andhra Pradesh 520010
+        </p>
+        <p class="text-amber-400 font-semibold mb-1">Toll Free: +91 91212 30001</p>
+        <p class="text-slate-400">Email: studio@eaglecoats.in</p>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+      <div>&copy; 1974&ndash;2025 Eagle Coats Private Limited. All Rights Reserved.</div>
+      <div class="flex items-center space-x-6">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-white transition-colors">Warranty Registration</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP PILL -->
+  <a href="https://wa.me/919121230042?text=Hi%20Eagle%20Coats%2C%20I%20need%20help%20choosing%20a%20colour." 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-2xl shadow-emerald-900/50 hover:scale-105 active:scale-95 transition-all duration-200 border border-emerald-400/30">
+    <i class="ph ph-whatsapp-logo text-xl"></i>
+    <span class="tracking-wide">Ask Colour Expert</span>
+  </a>
+
+  <!-- INTERACTIVE LOGIC SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elements
+      const sliderInput = document.getElementById('slider-input');
+      const sliderHandle = document.getElementById('slider-handle');
+      const afterLayerWrapper = document.getElementById('after-layer-wrapper');
+      const toggleSplitBtn = document.getElementById('toggle-split-btn');
+
+      const surfaceTabBtns = document.querySelectorAll('.surface-tab-btn');
+      const surfacePins = document.querySelectorAll('.surface-pin');
+      const activeSurfaceBadge = document.getElementById('active-surface-badge');
+
+      const mainWallTint = document.getElementById('main-wall-tint');
+      const accentWallTint = document.getElementById('accent-wall-tint');
+      const ceilingTint = document.getElementById('ceiling-tint');
+
+      const swatches = document.querySelectorAll('.swatch-item');
+      const familyTabs = document.querySelectorAll('.family-tab');
+
+      // Palette displays
+      const pSwatchMain = document.getElementById('palette-swatch-main');
+      const pNameMain = document.getElementById('palette-name-main');
+      const pHexMain = document.getElementById('palette-hex-main');
+
+      const pSwatchAccent = document.getElementById('palette-swatch-accent');
+      const pNameAccent = document.getElementById('palette-name-accent');
+      const pHexAccent = document.getElementById('palette-hex-accent');
+
+      const pSwatchCeiling = document.getElementById('palette-swatch-ceiling');
+      const pNameCeiling = document.getElementById('palette-name-ceiling');
+      const pHexCeiling = document.getElementById('palette-hex-ceiling');
+
+      let currentSurface = 'main'; // 'main' | 'accent' | 'ceiling'
+      let isSplitToggled = false;
+
+      // Current Selected Colors State
+      const currentColors = {
+        main: { name: 'Backwater Teal', hex: '#0D4F5C', code: 'EC-842' },
+        accent: { name: 'Temple Ochre', hex: '#CE7E17', code: 'EC-319' },
+        ceiling: { name: 'Jasmine White', hex: '#FEFAEE', code: 'EC-101' }
+      };
+
+      // 1. Slider logic
+      function updateSliderPosition(val) {
+        sliderHandle.style.left = val + '%';
+        afterLayerWrapper.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+      }
+
+      sliderInput.addEventListener('input', (e) => {
+        updateSliderPosition(e.target.value);
+      });
+
+      // 2. Toggle Split View button
+      toggleSplitBtn.addEventListener('click', () => {
+        isSplitToggled = !isSplitToggled;
+        if (isSplitToggled) {
+          updateSliderPosition(100);
+          sliderInput.value = 100;
+          toggleSplitBtn.classList.add('bg-white/10', 'text-amber-400');
+        } else {
+          updateSliderPosition(50);
+          sliderInput.value = 50;
+          toggleSplitBtn.classList.remove('bg-white/10', 'text-amber-400');
+        }
+      });
+
+      // 3. Surface Switching
+      function setActiveSurface(surface) {
+        currentSurface = surface;
+        
+        // Update segmented buttons
+        surfaceTabBtns.forEach(btn => {
+          if (btn.dataset.target === surface) {
+            btn.className = 'surface-tab-btn active py-2 px-1 text-center rounded-lg text-xs font-bold transition-all bg-amber-500 text-noir-950 shadow-md';
+          } else {
+            btn.className = 'surface-tab-btn py-2 px-1 text-center rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all';
+          }
+        });
+
+        // Update badge
+        const surfaceNames = {
+          main: 'Main wall',
+          accent: 'Accent wall',
+          ceiling: 'Ceiling'
+        };
+        activeSurfaceBadge.innerHTML = `Active: <span class="text-amber-400 font-semibold">${surfaceNames[surface]}</span>`;
+      }
+
+      surfaceTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => setActiveSurface(btn.dataset.target));
+      });
+
+      surfacePins.forEach(pin => {
+        pin.addEventListener('click', () => setActiveSurface(pin.dataset.surface));
+      });
+
+      // 4. Color Swatch Application
+      swatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+          const hex = swatch.dataset.hex;
+          const name = swatch.dataset.name;
+          const code = swatch.dataset.code;
+
+          // Apply to current surface
+          currentColors[currentSurface] = { name, hex, code };
+
+          if (currentSurface === 'main') {
+            mainWallTint.style.backgroundColor = hex;
+            pSwatchMain.style.backgroundColor = hex;
+            pNameMain.textContent = name;
+            pHexMain.textContent = hex;
+          } else if (currentSurface === 'accent') {
+            accentWallTint.style.backgroundColor = hex;
+            pSwatchAccent.style.backgroundColor = hex;
+            pNameAccent.textContent = name;
+            pHexAccent.textContent = hex;
+          } else if (currentSurface === 'ceiling') {
+            ceilingTint.style.backgroundColor = hex;
+            pSwatchCeiling.style.backgroundColor = hex;
+            pNameCeiling.textContent = name;
+            pHexCeiling.textContent = hex;
+          }
+
+          // Active indicator highlight on clicked swatch
+          swatches.forEach(s => {
+            const innerCircle = s.querySelector('span:first-child');
+            innerCircle.classList.remove('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-noir-900');
+            innerCircle.classList.add('ring-1', 'ring-white/10');
+          });
+          const activeCircle = swatch.querySelector('span:first-child');
+          activeCircle.classList.add('ring-2', 'ring-amber-400', 'ring-offset-2', 'ring-offset-noir-900');
+          activeCircle.classList.remove('ring-1', 'ring-white/10');
+
+          // Pulse effect on affected layer
+          const targetEl = currentSurface === 'main' ? mainWallTint : (currentSurface === 'accent' ? accentWallTint : ceilingTint);
+          targetEl.style.transition = 'none';
+          targetEl.style.opacity = '1';
+          setTimeout(() => {
+            targetEl.style.transition = 'all 0.4s ease';
+            targetEl.style.opacity = currentSurface === 'ceiling' ? '0.6' : (currentSurface === 'accent' ? '0.75' : '0.8');
+          }, 50);
+        });
+      });
+
+      // 5. Shade Family Filter buttons
+      familyTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          familyTabs.forEach(t => {
+            t.className = 'family-tab px-2.5 py-1 rounded-lg text-[11px] font-medium text-slate-400 hover:text-white hover:bg-white/5 whitespace-nowrap';
+          });
+          tab.className = 'family-tab active px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/10 text-amber-400 border border-amber-500/30 whitespace-nowrap';
+        });
+      });
+
+      // 6. Reset Paints
+      const resetBtn = document.getElementById('reset-paints-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          mainWallTint.style.backgroundColor = '#0D4F5C';
+          accentWallTint.style.backgroundColor = '#CE7E17';
+          ceilingTint.style.backgroundColor = '#FEFAEE';
+
+          pSwatchMain.style.backgroundColor = '#0D4F5C';
+          pNameMain.textContent = 'Backwater Teal';
+          pHexMain.textContent = '#0D4F5C';
+
+          pSwatchAccent.style.backgroundColor = '#CE7E17';
+          pNameAccent.textContent = 'Temple Ochre';
+          pHexAccent.textContent = '#CE7E17';
+
+          pSwatchCeiling.style.backgroundColor = '#FEFAEE';
+          pNameCeiling.textContent = 'Jasmine White';
+          pHexCeiling.textContent = '#FEFAEE';
+
+          updateSliderPosition(52);
+          sliderInput.value = 52;
+        });
+      }
+
+      // 7. Save Palette Toast notification
+      const saveBtn = document.getElementById('save-palette-btn');
+      saveBtn.addEventListener('click', () => {
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<i class="ph ph-check-circle text-base"></i><span>Saved!</span>';
+        saveBtn.classList.add('from-emerald-500', 'to-emerald-600');
+        setTimeout(() => {
+          saveBtn.innerHTML = originalText;
+          saveBtn.classList.remove('from-emerald-500', 'to-emerald-600');
+        }, 2000);
+      });
+
+      // 8. Copy Hexes
+      const copyBtn = document.getElementById('copy-palette-btn');
+      copyBtn.addEventListener('click', () => {
+        const text = `Eagle Coats Palette:\n- Main: ${currentColors.main.name} (${currentColors.main.hex})\n- Accent: ${currentColors.accent.name} (${currentColors.accent.hex})\n- Ceiling: ${currentColors.ceiling.name} (${currentColors.ceiling.hex})`;
+        navigator.clipboard.writeText(text).then(() => {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="ph ph-check text-emerald-400"></i> Copied!';
+          setTimeout(() => copyBtn.innerHTML = original, 1800);
+        });
+      });
+
+      // 9. Room Switcher (mock feedback)
+      const roomBtns = document.querySelectorAll('.room-btn');
+      roomBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          roomBtns.forEach(b => {
+            b.className = 'room-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap';
+          });
+          btn.className = 'room-btn active px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-noir-950 shadow transition-all whitespace-nowrap';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
